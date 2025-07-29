@@ -30,3 +30,10 @@ public class FunRestController {
         return "Today is your lucky day!";
     }
 }
+
+/*
+    Dev tools for automating reloading:
+    IntelliJ IDEA -> Settings -> Build, Execution, Deployment -> Compiler -> check "Build project automatically"
+    IntelliJ IDEA -> Settings -> Advanced settings -> check "Allow auto-make to start even if developed application is currently running"
+
+ */
