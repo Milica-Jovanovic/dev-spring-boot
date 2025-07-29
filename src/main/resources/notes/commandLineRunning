@@ -1,0 +1,12 @@
+1.	To run from the command line, navigate to project directory and run:
+        ./mvnw package
+    or if we already have maven installed run:
+        mvn package
+2.	JAR will be created in the target directory so we need to navigate to target directory:
+        cd target
+        ls
+        java -jar {jar file name} (example: java -jar dev-spring-boot-0.0.1-SNAPSHOT.jar )
+
+To use Maven Spring Boot Plugin:
+1. Move one directory up: cd ..
+2. Run the command: ./mvnw spring-boot:run
