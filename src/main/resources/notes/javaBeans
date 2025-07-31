@@ -1,0 +1,12 @@
+In the Spring Framework, a "bean" refers to an object that is instantiated and managed by the Spring IoC (Inversion of Control) container.
+
+By default, when our application starts, all beans are initialized.
+Spring will create an instance of each and make them available.
+
+Instead we can use Lazy Initialization with annotation @Lazy and bean will be initialized in the following cases:
+    - it is needed for dependency injection
+    - or it is explicitly requested
+
+If @Lazy is used in the class and that class is not called to be used anywhere, then it's not initialized at start
+
+
