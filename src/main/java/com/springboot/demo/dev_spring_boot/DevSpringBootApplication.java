@@ -11,3 +11,17 @@ public class DevSpringBootApplication {
 	}
 
 }
+
+/*
+
+	Behind the @SpringBootApplication annotation and its import are the following annotations:
+		@EnableAutoConfiguration
+		@ComponentScan
+		@Configuration
+
+	Behind the SpringApplication import are the following actions:
+	   register all beans
+	   start the embedd]ed server Tomcat
+	   ...
+
+ */

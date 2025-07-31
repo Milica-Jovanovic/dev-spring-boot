@@ -34,6 +34,12 @@ Spring will look for a class that matches by type (class or interface), and the 
   In Controller we use annotation @Autowired in the constructor definition that will communicate with annotations @Component to find matching type and inject them
   Also in Controller we have annotations @GetMapping that are methods that are returning our endpoints
 
+  What's happening behind the scene in Constructor dependency injection:
+    - we only see private Coach theCoach field declared and @Autowired annotation in the constructor that uses theCoach instance
+    - behind the scene are happening a new Coach object and a new Controller object that uses theCoach instance:
+      Coach theCoach = new CricketCoach();
+      DemoController demoController = new DemoController(theCoach);
+
 ################################################
 
 @Component annotation marks the class as a Spring Bean, which makes it a candidate for a dependency injection
