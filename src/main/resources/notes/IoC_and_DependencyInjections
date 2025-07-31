@@ -63,3 +63,12 @@ Constructor Injection:
 Setter Injection:
     - when we have optional dependencies
     - if dependency is not provided then we have a default logic
+
+Field Injections:
+    - not recommended in recent years
+    - makes the code harder to unit test
+    - used on legacy projects
+    - example:
+        @Autowired
+        private Coach myCoach;
+        // no need for constructors or setters
