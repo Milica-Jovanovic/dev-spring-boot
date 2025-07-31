@@ -1,0 +1,41 @@
+Inversion of control is the approach of outsourcing the construction and management of objects
+
+
+Spring container (Object Factory) has two primary functions:
+1) Create and manage objects (Inversion of Control)
+2) Inject object dependency (Dependency Injection)
+
+To configure Spring Container there are different ways:
+- XML configuration file (legacy)
+- Java Annotations (modern)
+- Java Source Code (modern)
+
+Dependency injection
+Inject an object dependency into Controller
+
+There are multiple types of injection with Spring but these two are  recommended:
+1) Constructor Injection
+2) Setter Injection
+
+
+Spring AutoWiring
+For dependency injection Spring can use autowiring
+
+Spring will look for a class that matches by type (class or interface), and the it will automatically inject, this is autowiring
+
+################ MY OWN WORDS ##################
+
+- We have interfaces with abstract methods
+
+- Then we have classes that are implementing those interfaces and mandatory overriding abstract methods
+  Those classes have in Spring have an annotation @Component
+
+- Controller class in their definition always has @RestController annotation
+  In Controller we use annotation @Autowired in the constructor definition that will communicate with annotations @Component to find matching type and inject them
+  Also in Controller we have annotations @GetMapping that are methods that are returning our endpoints
+
+################################################
+
+@Component annotation marks the class as a Spring Bean, which makes it a candidate for a dependency injection
+
+A Spring Bean is just a regular Java class that is managed by Spring
