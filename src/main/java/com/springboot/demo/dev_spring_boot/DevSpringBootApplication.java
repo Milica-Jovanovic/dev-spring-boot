@@ -3,12 +3,14 @@ package com.springboot.demo.dev_spring_boot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(
+/* // including packages we want to scan
+	@SpringBootApplication(
 		scanBasePackages = {
 				"com.springboot.demo.dev_spring_boot",
 				"com.springboot.demo.util"
 		}
-)
+)*/
+@SpringBootApplication
 public class DevSpringBootApplication {
 
 	public static void main(String[] args) {
