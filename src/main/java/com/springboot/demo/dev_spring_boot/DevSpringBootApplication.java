@@ -3,7 +3,12 @@ package com.springboot.demo.dev_spring_boot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(
+		scanBasePackages = {
+				"com.springboot.demo.dev_spring_boot",
+				"com.springboot.demo.util"
+		}
+)
 public class DevSpringBootApplication {
 
 	public static void main(String[] args) {

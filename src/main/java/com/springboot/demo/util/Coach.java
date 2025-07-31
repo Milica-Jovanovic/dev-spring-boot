@@ -1,4 +1,4 @@
-package com.springboot.demo.dev_spring_boot;
+package com.springboot.demo.util;
 
 public interface Coach {
 
