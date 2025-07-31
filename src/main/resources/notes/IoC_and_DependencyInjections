@@ -76,3 +76,5 @@ Field Injections:
 ##############################################
 
 @Qualifier annotation is used in constructor or setter when we have multiple classes that are matching so we specify which one
+@Primary is used to make one class primary, but if we have a both in controller @Qualifier and @Primary, then @Qualifier has priority
+Recommendation is to use @Qualifier because it's specific and has priority anyway
