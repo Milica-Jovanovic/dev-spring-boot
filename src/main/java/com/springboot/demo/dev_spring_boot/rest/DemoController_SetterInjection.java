@@ -6,21 +6,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class DemoController {
+public class DemoController_SetterInjection {
 
     // define a private field for the dependency
     private Coach myCoach;
 
-    // define a constructor for dependency injection
+    // define a setter method for dependency injection
     @Autowired
-    public DemoController(Coach theCoach) {
+    public void tryAnyName(Coach theCoach) {
         myCoach = theCoach;
     }
+    /*public void setCoach(Coach theCoach) {
+        myCoach = theCoach;
+    }*/
 
-    @GetMapping("/dailyworkout")
+    @GetMapping("/dailyworkout2")
     public String getDailyWorkout() {
         return myCoach.getDailyWorkout();
     }
-
-
 }

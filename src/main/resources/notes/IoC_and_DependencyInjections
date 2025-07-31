@@ -31,17 +31,35 @@ Spring will look for a class that matches by type (class or interface), and the 
   Those classes have in Spring have an annotation @Component
 
 - Controller class in their definition always has @RestController annotation
-  In Controller we use annotation @Autowired in the constructor definition that will communicate with annotations @Component to find matching type and inject them
+  In Controller we use annotation @Autowired in the constructor or setter definition that will communicate with annotations @Component to find matching type and inject them
   Also in Controller we have annotations @GetMapping that are methods that are returning our endpoints
 
   What's happening behind the scene in Constructor dependency injection:
     - we only see private Coach theCoach field declared and @Autowired annotation in the constructor that uses theCoach instance
-    - behind the scene are happening a new Coach object and a new Controller object that uses theCoach instance:
-      Coach theCoach = new CricketCoach();
-      DemoController demoController = new DemoController(theCoach);
+    - behind the scene are happening a new Coach object, and a new Controller object that uses theCoach instance in constructor:
+         Coach theCoach = new CricketCoach();
+         DemoController demoController = new DemoController(theCoach);
+
+  What's happening behind the scene in Setter dependency injection:
+    - we only see private Coach theCoach field declared and @Autowired annotation in the setter that uses theCoach instance
+    - behind the scene are happening a new Coach object, and a new Controller object that uses theCoach instance with setter
+         Coach theCoach = new CricketCoach();
+         DemoController demoController = new DemoController(theCoach);
+         demoController.setCoach(theCoach);
+    - setter method can be named with any method name, doesn't have to be setSomething... it can be doSomething...
 
 ################################################
 
 @Component annotation marks the class as a Spring Bean, which makes it a candidate for a dependency injection
 
 A Spring Bean is just a regular Java class that is managed by Spring
+
+############# WHICH DEPENDENCY TO USE? #################
+
+Constructor Injection:
+    - when we have required dependencies
+    - it is recommended by spring.io as first choice
+
+Setter Injection:
+    - when we have optional dependencies
+    - if dependency is not provided then we have a default logic
