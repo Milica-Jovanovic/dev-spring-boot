@@ -9,4 +9,13 @@ Instead we can use Lazy Initialization with annotation @Lazy and bean will be in
 
 If @Lazy is used in the class and that class is not called to be used anywhere, then it's not initialized at start
 
+If we have multiple classes and we want to apply @Lazy in each class, instead of doing it individually we can setup global configuration
+
+To setup Lazy Initialization Global Configuration we can set it up in application.properties:
+    spring.main.lazy-initialization=true
+By setting this up, all beans are lazy, no beans are created until needed, including our DemoController.
+After setting it up, this is what will happen when we access "/dailyworkout" rest endpoint:
+    - Spring will determine dependencies for DemoController
+    - For dependency resolution, Spring will create instance of TennisCoach first
+    - Then it will create instance of DemoController and inject the TennisCoach
 
