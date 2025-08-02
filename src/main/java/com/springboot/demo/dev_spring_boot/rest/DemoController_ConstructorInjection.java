@@ -15,13 +15,20 @@ public class DemoController_ConstructorInjection {
     private Coach anotherCoach;
 
     // define a constructor for dependency injection
-    @Autowired
+    /*@Autowired
     public DemoController_ConstructorInjection(
             @Qualifier("tennisCoach") Coach theCoach,
             @Qualifier("tennisCoach") Coach theAnotherCoach) {
         System.out.println("In constructor: " + getClass().getSimpleName());
         myCoach = theCoach;
         anotherCoach = theAnotherCoach;
+    }*/
+
+    @Autowired
+    public DemoController_ConstructorInjection(
+            @Qualifier("swimCoach") Coach theCoach) {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+        myCoach = theCoach;
     }
 
     @GetMapping("/dailyworkout")

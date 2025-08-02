@@ -78,3 +78,67 @@ Field Injections:
 @Qualifier annotation is used in constructor or setter when we have multiple classes that are matching so we specify which one
 @Primary is used to make one class primary, but if we have a both in controller @Qualifier and @Primary, then @Qualifier has priority
 Recommendation is to use @Qualifier because it's specific and has priority anyway
+
+##############################################
+        Configuring Beans with Java Code
+
+- Create @Configuration class
+- Define @bean method to configure the bean
+- Inject the bean into our controller
+
+@Bean annotation is useful when we want to use a third-part class to a Spring framework, as a Spring Bean
+We won't have acess to the source code of third-party class, but we ca use it as a Spring Bean
+An example is AWS S3 service that we want to use the AWS S3 client as a Spring bean in our application
+Our code will communicate with a cloud and store/retrieve documents...
+The AWS S3 client is part of AWS SDK so we can't modify the AWS SDK source code, we can't add @Component annotation to their code
+But we can configure it as a Spring Bean using @Bean annotation, example:
+
+@Configuration
+public class DocumentConfig {
+
+    @Bean
+    public S2Client remoteClient() {
+
+        // Create an S3 client to connect to AWS S3
+        ProfileCredentialsProvider credentialsProvider = ProfileCredentialsProvider.create();
+        Region region = Region.US_EAST_1;
+        S3Client s3Client = S3Client.builder()
+                .region(region)
+                .credentialsProvider(credentialsProvider)
+                .build();
+
+        return s3Client;
+    }
+}
+
+Once S3 client becomes a Spring bean we can use it in another part of our application
+It's ready to be injected as a bean
+
+@Component
+public class DocumentsService {
+
+    private S3Client s3Client;
+
+    @Autowired
+    public DocumentsService(S3Client theS3Client) {
+        s3Client = theS3Client;
+    }
+
+
+    public void processDocument(Document theDocument) {
+
+        // get the document input stream and file size
+
+        // Store document in AWS S3
+        // Create a put request for the object
+        PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                .bucket(bucketName)
+                .key(subDirectory)
+                .acl(ObjectCannedACL.BUCKET_OWNER_FULL_CONTROL).build();
+
+        // perform the putObject operation to AWS S3 ... using our autowired bean
+        s3Client.putObject(putObjectRequest, RequestBody.fromInputStream(fileInputStream, contentLength));
+    }
+}
+
+We make a third-party class available to Spring framework by using annotation @Bean
