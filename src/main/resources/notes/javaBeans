@@ -19,3 +19,24 @@ After setting it up, this is what will happen when we access "/dailyworkout" res
     - For dependency resolution, Spring will create instance of TennisCoach first
     - Then it will create instance of DemoController and inject the TennisCoach
 
+######################## BEAN SCOPE #########################
+
+The default bean scope is singleton (one instance of the bean)
+One single item is created in the memory and it's shared among other items
+
+We can also explicitly specify bean scope: @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+Spring Bean Scopes:
+    - Singleton
+    - Prototype (creates a new bean instance for each container request)
+    - Request (for HTTP web request)
+    - Session (for HTTP web session)
+    - Application (for web app ServletContext)
+    - Websocket (for a web socket)
+
+To check is the scope singleton or prototype:
+    @GetMapping("/check")
+    public String check() {
+        return "Comparing beans: myCoach == anotherCoach, " + (myCoach == anotherCoach);
+    }
+it will return "true" if it's singleton, and "false" if it's prototype
+
