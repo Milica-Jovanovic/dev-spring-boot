@@ -40,3 +40,27 @@ To check is the scope singleton or prototype:
     }
 it will return "true" if it's singleton, and "false" if it's prototype
 
+################# BEAN LIFECYCLE METHODS ##################
+
+This is the bean lifecycle:
+    1. Container started
+    2. Bean Instantiated
+    3. Dependencies Injected
+    4. Internal Spring Processing
+ -> 5. OUR CUSTOM INIT METHODS
+    6. Bean is ready for use
+    7. Container is shutdown
+ -> 8. OUR CUSTOM DESTROY METHODS
+    9. Stop
+
+In our bean initialization custom methods, we can:
+    - @PostConstruct
+    - calling custom business logic methods
+    - setting up handles to resources (DB, sockets, file, ...)
+    - initialization methods are called on all objects regardless of scope,  in prototype scope too
+
+In our bean destruction custom methods, we can:
+    - @PreDestroy
+    - calling custom business logic methods
+    - cleaning up handles to resources (DB, sockets, file, ...)
+    - For "prototype" scoped beans, Spring doesn't call the destroy method
